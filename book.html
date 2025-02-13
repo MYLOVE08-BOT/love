@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message by AAYUSH</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./us5.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            2025.<br />MY LOVE
+          </p>
+        </div>
+        <div class="back">
+          <h2>A Special Beginning ❤️✨</h2>
+
+       <p>Aap se baat ek ajeeb ittefaq se shuru hui… Insta par ek chhota sa message, jo dheere dheere meri duniya ka sabse khoobsurat hissa ban gaya. Pehli baar jab aapne reply kiya tha, tab nahi pata tha ki woh ek pal meri zindagi ko itna khoobsurat bana dega.
+
+        Aaj Valentine’s Day par bas itna kehna chahta hoon—jis tarah woh pehli baat ek surprise thi, usi tarah aapka aana meri zindagi ka sabse haseen ehsaas ban gaya hai. Aapki har baat, har muskurahat, har ehsaas mere dil ke itne kareeb hai ki shabdon mein bayan karna mushkil hai.
+        
+        Aap sirf ek shakhs nahi, ek ehsaas hain jo dil ke har dhadkan mein basa hai ❤️✨</p>
+
+          <p>
+            <br />Since we connect in
+            Instagram on May 23 2024, ....
+          </p>
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>From Strangers to Something Special ❤️✨</h2>
+          <p>
+            Dheere dheere baatein badhti gayi… subah ke pehle message se lekar raat ke aakhri message tak. Puchhna ek dusre ki pasand-napassand, bina kahe hi har baat samajhna. 
+            Aadhi raat ko bhi bas ek doosre ke liye available rehna, ek doosre ko sambhalna… woh hasi-mazaak, woh chhoti si ladaiyan, aur phir ek sharmili si maafi—sab kuch itna apna sa lagne laga hai.
+            Woh aapko Hani se Ladlii bulana 💖
+
+            Aur phir ek din yeh mehsoos hona ki yeh sirf baatein nahi, ek aadat ban chuki hai. Ek aisi aadat jo sukoon deti hai, jo apnapan mehsoos karwati hai. Jo sirf ek dosti nahi, shayad kuch aur bhi hai… kuch jo lafzon se kahna mushkil hai, magar dil mehsoos karta hai.
+
+            Shayad yeh bas ek ittefaq nahi tha… shayad yeh kahani likhi hi iss tarah gayi thi, ki hum ek din "hum" ban jaayein.❤️✨
+          </p>
+        </div>
+        <div class="back">
+          <img src="us2.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>The First Meet✨💖</h2>
+          <p>
+            Achanak plan karke milna… dil tez dhadak raha tha,sheher bhi naya tha par jaane kyun ek ajeeb si sukoon bhi thi. Jab aap yellow kurti pehne, bindi lagaye, aur woh long earrings pehankar mere paas aa rahe the, toh dur se hi pehchan liya tha—"Yeh aap hi hain."
+
+Woh pehli mulaqat… par kabhi mehsoos hi nahi hua ki pehli baar mil rahe hain. Jaise saalon se ek doosre ko jaante ho, jaise yeh mulaqat likhi hi thi. Har pal jaise kisi khoobsurat kahani ka ek hissa lag raha tha.
+
+Phir pehli baar ek doosre ka haath pakadna… pehli baar ek doosre ki aankhon mein kho jaana… woh lamha jo ek pal ke liye duniya ko thama gaya. Aur phir woh baarish, jo hamesha yaad rahegi—pehli baar ek saath bheegna, hansna, bheege haathon se ek doosre ko mehsoos karna.
+
+Aur jaane se pehle… woh pehla hug, jo sirf ek pal ka nahi tha, balki ek ehsaas tha. Woh ehsaas jo hamesha dil ke kareeb rahega, jo bata raha tha ki yeh sirf ek mulaqat nahi, ek nayi kahani ki shuruaat thi. Zindagi ka sabse khoobsurat din… jo sirf ek din nahi, ek yaad ban chuka hai, hamesha ke liye. ❤️✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>The Magic of YOU 💫✨</h2>
+          <p>
+            Aapki aankhein… jo ek pal mein sab kuch keh jaati hain. Aapki smile… jo duniya ki sabse khoobsurat smile lagti hai. Aapki khushboo… jo har mulaqat ko ek yaadgaar mehsoos bana deti hai. Hayee, pata hi nahi chala kab yeh dil sirf dhadakna band karke sirf aapka hone laga… kab aap sirf ek aadat nahi, meri duniya ban gaye.
+
+            Woh pal jab aap mere kandhe par sir rakh kar so rahe the… jaise zindagi ka sabse sukoon bhara ehsaas ho. Aap itne kareeb the, ki bas ek pal ke liye sab kuch bhool gay sirf mehsoos kiya aapko, aapki saanson ko, aapki nazdeekiyon ko. Woh ek lamha… jo chahta tha ki kabhi khatam na ho.
+            
+            Jab aap mere kareeb aaye, haye woh mehsoos! Jaise waqt ruk gaya ho, jaise duniya sirf hum dono tak simat gayi ho. Bas dil chahta tha ki aapko dekhta rahun, aapko apne paas mehsoos karta rahun… yuhi hamesha.
+            
+            Aur ab yeh long distance bhi ek pyaara ehsaas lagta hai… kyunki dooriyan sirf faaslon mein hoti hain, dil toh tab bhi utna hi kareeb hota hai. ❤️✨
+          </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Best Day of My Day🤞💖</h2>
+          <p>
+            Subah ke 7 baje the, aur aapka ek chhota sa message aaya—"Do you love me?" Us waqt main ek gadhe ki tarah sirf "Haan" bol raha tha, jabki aap toh mujhe hint de rahi thi! Aur phir jab maine samjha bhi nahi, tab aapne hi initiative le kar mujhe propose kar diya.Aur jab aapne woh teen magical words kahe"I LOVE YOU AAYUSH ❤️✨"mano sapna haqiqat ban gaya. Jaise zindagi ek naye rang mein dhal gayi ho. Ek pal ke liye sab kuch ruk gaya, bas ek ehsaas reh gaya mujhe meri pasandida ladki mil gayi hai, meri zindagi ka woh hissa jise maine hamesha maanga tha.Laga jaise meri sari prayers sun li gayi ho, jaise mujhe koi aisa mil gaya ho jo khud se bhi zyada pyaar karega. Jaise mujhe mera "ghar" mil gaya ek aisi jagah jahan sirf sukoon hai, sirf pyaar hai.Aur phir jab maine reply diya"I LOVE YOU SO MUCH MERI LADLI ❤️✨"toh dil jhoom utha! Us pal, sirf ek baat samajh aayi yeh sirf ek confession nahi tha, yeh meri zindagi ka sabse khoobsurat mod tha, jisse main hamesha apni jaan se bhi zyada sambhal ke rakhunga. ❤️✨
+          </p>
+        </div>
+        <div class="back">
+          <img src="./us3.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>OUR FIRST DATE💫💖</h1>
+          <p>
+            Hum hamesha milte the, lekin is baar sab kuch alag tha is baar hum pehli baar ek couple ki tarah mil rahe the. Woh ehsaas hi alag tha—ek naya jadoo, ek naya sukoon.
+
+            Aur jab aap black one-piece pehen kar aaye… hayee, bas dil ek pal ke liye ruk sa gaya. Aap itne khoobsurat lag rahe the ki bas dekhte rehne ka mann kar raha tha. Woh sharmana, woh muskurahat, woh aankhon ki chamak—sab kuch jaise ek sapne jaisa lag raha tha.
+            
+            Aur phir humari pehli movie date jab aap film dekh rahi thi aur main sirf aapko. Woh halka sa haath pakadna, woh bina kahe sab kuch kehna, woh har pal mehsoos karna ki ab hum sirf dost nahi rahe… ab hum ek doosre ki duniya ban chuke hain aur phir lunch per ek dusre ko apne hathon se khilana aur aapko promise ring dekr yeh promise krna hum humesha saath rhge.
+            
+            Us din jo mehsoos kiya, woh sirf ek date nahi thi… woh ek yaad thi jo zindagi bhar mere dil ke sabse kareeb rahegi. ❤️✨
+          </p>
+        </div>
+        <div class="back">
+          <h1>The First cuddle💖✨</h1>
+          <p>
+
+Woh pehla cuddle… jab hum ek doosre ki baahon mein the, jaise duniya ka sabse sukoon bhara jadoo chal gaya ho. Koi shabd nahi, bas ek ehsaas… sirf aap, sirf main, aur sirf woh pal. 
+
+Dil ki dhadkane tez thi, par mann pehli baar itna shaant mehsoos ho raha tha. Jaise iss duniya mein sirf hum dono hain… ek doosre mein kho gaye, bina kisi shabd ke sab kuch keh gaye.
+
+Woh aapka mujhe aur kareeb kheench lena, mera aapki baahon mein aur simat jaana… **ek doosre ki saansein mehsoos karna, ek doosre ki khushboo mein kho jaana. Jaise yeh pal hamesha ke liye ruk jaye, jaise duniya ka sabse khoobsurat ehsaas sirf yeh hi ho.  
+
+Woh pal sirf ek baar din tha, par mehsoos har din hota hai.❤️✨
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The First Kiss✨💖</h2>
+          <p>
+            Hum ek doosre ki baahon mein the, jahan sirf hum the… ek doosre mein khoye hue, ek doosre ki aankhon mein doobe hue. Woh pal jaise kisi aur hi duniya ka tha—ek aisi duniya jisme sirf aap aur main the.
+
+Aur phir… humne apni pehli kiss ki. Pehle toh maano sapna sa laga, ek pal ke liye sab kuch ruk gaya. Par phir… humne dobara kiss ki, aur phir baar-baar… deeply, wildly, ek doosre mein aur kho kar.
+
+Woh ehsaas… jaise pyaar apni gehraiyon tak mehsoos ho raha ho, jaise har dhadkan sirf ek doosre ke liye chal rahi ho. Woh pal sirf ek kiss ka nahi tha, woh ek rishta aur gehra hone ka tha. ❤️🔥✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>Sirf Aap✨💖</h2>
+          <p>
+            Maine aap jaisi pyaari ladki kabhi nahi dekhi… jo sirf khoobsurat nahi, balki dil se bhi utni hi achhi hai. Aapki masoomiyat, aapki mehnat, aapka pyaar—sab kuch itna khaas hai Aapki har chhoti chhoti baat mujhe aur aapse pyaar karne par majboor karti hai. Aap jis tarah se apne sapnon ke liye mehnat karti hain, jis tarah se har chhoti cheez ko importance deti hain, jis tarah se mujhe samajhti hain… woh sab mujhe aur zyada aapka deewana bana deta hai.
+
+            Aur sabse khaas baat, aapka dil itna saaf hai ki har koi aapse pyaar karne lagta hai. Aapke andar ek alag hi noor hai, jo aapko sabse alag, sabse khaas banata hai.
+            
+            Aap ek perfect example hain "Brain with Beauty" ka. Jisme sirf khoobsurti nahi, ek tez dimaag, ek bada dil, aur ek saccha pyaar bhi hai. Aap meri zindagi ka woh hissa hain jise main kabhi khona nahi chahta. Mere liye aap sirf ek insaan nahi, balki ek mehsoos hain, jo har din aur khoobsurat bana dete hain. ❤️✨            
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      <div class="page">
+        <div class="front">
+          <h2>Promises & Confession🌹❤</h2>
+          <p>
+             💕Main wada karta hoon, hamesha aapko khush rakhunga, khud se bhi zyada pyaar karunga, har pal aapka dhyaan rakhunga. Aap par koi aanch nahi aane dunga, kabhi aapko akela mehsoos nahi hone dunga.
+
+             Main chahta hoon ki aap hamesha muskurati rahein, kyunki aapki ek smile meri duniya roshan kar deti hai. Kabhi kabhi shayad main zyada ho jata hoon, shayad kabhi galtiyan bhi karta hoon, par sach bataun toh aapke aage kuch bhi dikhai nahi deta.
+             
+             Wada karta hoon, meri pehli aur aakhri priority sirf aap hi rahengi. Hamesha loyal rahoonga, hamesha aapke saath rahoonga, har dukh apna bana lunga, har khushi aapki bana dunga.
+             
+             Bas ek cheez chahiye—aap hamesha meri rahna aur main aapka. ❤️✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>Will You Be Mine? ❤️✨</h2>
+          <p>Jab se aap meri zindagi mein aaye hain, sab kuch badal gaya hai. Har din khoobsurat lagne laga hai, har pal ek naya ehsaas ban gaya hai. Aapki baatein, aapki hasi, aapka pyaar—sab kuch meri duniya ka sabse haseen hissa ban chuka hai.
+
+            Main sirf ek sawal poochna chahta hoon… kya aap meri zindagi ka woh hissa banengi jo kabhi alag na ho?
+            
+            Main wada karta hoon—hamesha aapko pyaar dunga, aapka khayal rakhunga, kabhi kisi cheez ki kami mehsoos nahi hone dunga. Aap meri pehli priority hain aur hamesha rahengi.
+            
+            Aur sabse zaroori baat, main kabhi aapko takleef nahi dunga, kabhi kaam nahi karne dunga. Aapko princess bana ke rakhunga, har khushi aapke kadmon mein laa dunga.
+            
+            Toh aaj, dil se, saari duniya ke samne…
+            Will you be mine forever? ❤️✨
+            Will you be my wifey💖💕
+          I LOVE YOU SO MUCH MERA BETA MERI LADLII HANII❤️✨ </p>
+
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="front">
+          <img src="us4.jpg" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>Cutest Princess</h3>
+          <p>
+            Content:By AAYUSH<br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
